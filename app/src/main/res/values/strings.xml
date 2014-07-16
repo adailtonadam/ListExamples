@@ -4,5 +4,9 @@
     <string name="app_name">ListExamples</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_simple_list">SimpleList</string>
+    <string name="title_activity_expandable_list">ExpandableList</string>
+    <string name="activity_main_button_simple_view_text">Lista simples</string>
+    <string name="activity_main_button_expandable_list_text">Lista expandível</string>
 
 </resources>
