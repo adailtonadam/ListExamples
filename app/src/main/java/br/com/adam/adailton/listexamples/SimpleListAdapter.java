@@ -44,7 +44,7 @@ public class SimpleListAdapter extends BaseAdapter{
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         View view = convertView;
-        view = inflater.inflate(R.layout.adapter_usuario, parent, false);
+    /*    view = inflater.inflate(R.layout.adapter_usuario, parent, false);
 
         final TextView nome = (TextView) view.findViewById(R.id.adapter_usuario_textview_nome);
         final TextView fone = (TextView) view.findViewById(R.id.adapter_usuario_textview_fone);
@@ -84,6 +84,7 @@ public class SimpleListAdapter extends BaseAdapter{
                         activity.startActivity(intent);
                     }
                 });
+                */
         return view;
     }
 
