@@ -85,6 +85,7 @@ public class SimpleListAdapter extends BaseAdapter{
                     }
                 });
                 */
+
         return view;
     }
 
