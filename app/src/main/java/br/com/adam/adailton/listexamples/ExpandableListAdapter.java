@@ -63,7 +63,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter{
         final String color = (String) getChild(groupPosition, childPosition);
         final String product = (String) getGroup(groupPosition);
 
-
+/*
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.adapter_usuario_place_item, null);
         }
@@ -87,13 +87,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter{
 
             }
         });
+        */
 
         return convertView;
     }
 
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         final String product = (String) getGroup(groupPosition);
-        if (convertView == null) {
+      /*  if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.adapter_usuario_places, null);
         }
@@ -131,7 +132,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter{
                 context.startActivity(intent);
             }
         });
-
+*/
         return convertView;
     }
 
