@@ -4,5 +4,6 @@
     <item android:state_expanded="false" android:drawable="@drawable/ic_action_expand"></item>
     <item android:state_expanded="true" android:state_empty="false"  android:drawable="@drawable/ic_action_collapse"></item>
     <item android:state_expanded="true" android:state_empty="true"  android:drawable="@android:drawable/star_off"></item>
-<!-- state_empty somente está disponivel após expandir. Com state_expanded = false, não existe o valor de state_empty-->
+    <!-- state_empty somente está disponivel após expandir. Com state_expanded = false, não existe o valor de state_empty-->
+
 </selector>

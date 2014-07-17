@@ -16,7 +16,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:choiceMode="singleChoice"
-        android:groupIndicator="@drawable/selector_expandable_list" />
+        android:groupIndicator="@drawable/selector_expandable_list"
+        android:childIndicator="@android:drawable/divider_horizontal_dark" />
 
     <TextView
         android:layout_width="wrap_content"
