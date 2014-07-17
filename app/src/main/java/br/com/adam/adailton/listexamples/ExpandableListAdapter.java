@@ -2,10 +2,12 @@ package br.com.adam.adailton.listexamples;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 import java.util.Map;
@@ -17,15 +19,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter{
 
     private List<String> products;
     private Map<String, List<String>> productColors;
-    private Activity context;
+    private Activity activity;
     private LayoutInflater inflater;
     // context.getLayoutInflater();
 
-    public ExpandableListAdapter(Activity context, List<String> products, Map<String, List<String>> productColors) {
-        this.context = context;
+    public ExpandableListAdapter(Activity activity, List<String> products, Map<String, List<String>> productColors) {
+        this.activity = activity;
         this.products = products;
         this.productColors = productColors;
-        this.inflater = LayoutInflater.from(context);
+        this.inflater = LayoutInflater.from(activity);
     }
     public Object getChild(int groupPosition, int childPosition) {
         return productColors.get(products.get(groupPosition)).get(childPosition);
@@ -60,79 +62,51 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter{
     }
 
     public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final String color = (String) getChild(groupPosition, childPosition);
-        final String product = (String) getGroup(groupPosition);
 
-/*
+        final String color = (String) getChild(groupPosition, childPosition);
+
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.adapter_usuario_place_item, null);
+            convertView = inflater.inflate(R.layout.adapter_expandable_list_subitem, null);
         }
 
-        TextView item = (TextView) convertView.findViewById(R.id.adapter_usuario_places_item_textview_nome);
-        item.setText(local.getNome());
+        TextView item = (TextView) convertView.findViewById(R.id.adapter_expandable_list_subitem_name);
+        item.setText(color);
 
-        convertView.findViewById(R.id.adapter_usuario_places_item_textview_nome).setOnClickListener(new OnClickListener() {
+        convertView.findViewById(R.id.adapter_expandable_list_subitem_name).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                UsuarioLocalDao dao = new UsuarioLocalDao(context);
-                UsuarioLocal item = dao.getIdByUserLocal(local.getId(),usuario.getId());
-                if(item == null){
-                    return;
-                }
-                Intent intent = new Intent(context,PlaceViewByUserActivity.class);
-                intent.putExtra("userlocalid",item.getId());
-                context.startActivity(intent);
-
-            }
+                Intent intent = new Intent(activity.getApplicationContext(),ItemViewActivity.class);
+                intent.putExtra("MainText",color);
+                activity.startActivity(intent);
+             }
         });
-        */
 
         return convertView;
     }
 
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         final String product = (String) getGroup(groupPosition);
-      /*  if (convertView == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.adapter_usuario_places, null);
+
+        if (convertView == null) {
+            LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = layoutInflater.inflate(R.layout.adapter_expandable_list_item, null);
         }
-        TextView nome = (TextView) convertView.findViewById(R.id.adapter_usuario_places_textview_nome);
-        nome.setText(usuario.getNome());
-        TextView fone = (TextView) convertView.findViewById(R.id.adapter_usuario_places_textview_fone);
-        fone.setText(usuario.getFone());
-        TextView sex = (TextView) convertView.findViewById(R.id.adapter_usuario_places_textview_sex);
-        if (usuario.getSex() == Usuario.MASCULINO) {
-            sex.setText(context.getResources().getString(R.string.activity_user_list_masculino));
-        } else {
-            sex.setText(context.getResources().getString(R.string.activity_user_list_feminino));
-        }
+        TextView nome = (TextView) convertView.findViewById(R.id.adapter_expandable_list_item_name);
+        nome.setText(product);
 
 
-
-        convertView.findViewById(R.id.adapter_usuario_places_layout_contato_imagem).setOnClickListener(new OnClickListener() {
+        convertView.findViewById(R.id.adapter_expandable_list_item_name).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                String url = "tel:" + usuario.getFone();
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
-                context.startActivity(intent);
+                Intent intent = new Intent(activity.getApplicationContext(),ItemViewActivity.class);
+                intent.putExtra("MainText",product);
+                activity.startActivity(intent);
             }
         });
 
-        convertView.findViewById(R.id.adapter_usuario_places_layout_contato).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-
-                Intent intent = new Intent(context, UserPlaceActivity.class);
-                intent.putExtra("userid", usuario.getId());
-                context.startActivity(intent);
-            }
-        });
-*/
         return convertView;
     }
 

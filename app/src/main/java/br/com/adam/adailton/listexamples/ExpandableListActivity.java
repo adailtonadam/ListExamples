@@ -2,8 +2,19 @@ package br.com.adam.adailton.listexamples;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.ArrayMap;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ExpandableListView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import br.com.adam.adailton.listexamples.R;
 
 public class ExpandableListActivity extends Activity {
@@ -12,6 +23,7 @@ public class ExpandableListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expandable_list);
+        setAdapter();
     }
 
 
@@ -32,5 +44,77 @@ public class ExpandableListActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setAdapter() {
+        ArrayList<String> products = (ArrayList<String>) getProducts();
+        Map<String, List<String>> productColors =  getProductColors();
+
+        ExpandableListView productsListView = (ExpandableListView) findViewById(R.id.activity_expandable_listview_main);
+        TextView emptyTextView = (TextView) findViewById(R.id.activity_expandable_textview_empty);
+
+        if (products.size() != 0) {
+            productsListView.setAdapter(new ExpandableListAdapter(this, products,productColors));
+            emptyTextView.setVisibility(View.GONE);
+        } else {
+            productsListView.setVisibility(View.GONE);
+        }
+    }
+
+
+    private List<String> getProducts() {
+        ArrayList<String> products = new ArrayList<String>();
+        products.add("Arroz");
+        products.add("Banana");
+        products.add("Feijão");
+        products.add("Carne de porco");
+        products.add("Maça");
+        products.add("Macarrão");
+        products.add("Maionese");
+        products.add("Mostarda");
+        return products;
+    }
+
+
+    private Map<String, List<String>> getProductColors(){
+        Map<String, List<String>> productColors =  new HashMap<String, List<String>>();
+
+        ArrayList <String> colors;
+
+        colors = new ArrayList<String>();
+        colors.add("Amarelo");
+        colors.add("Azul");
+        colors.add("Preto");
+        productColors.put("Arroz",colors);
+
+        colors = new ArrayList<String>();
+        colors.add("Amarelo");
+        productColors.put("Banana",colors);
+
+        colors = new ArrayList<String>();
+        colors.add("Azul");
+        colors.add("Preto");
+        productColors.put("Feijão",colors);
+
+        colors = new ArrayList<String>();
+        productColors.put("Carne de porco",colors);
+
+        colors = new ArrayList<String>();
+        colors.add("Azul");
+        colors.add("Vermelho");
+        productColors.put("Maça",colors);
+
+
+        colors = new ArrayList<String>();
+        productColors.put("Macarrão",colors);
+
+        colors = new ArrayList<String>();
+        colors.add("Azul");
+        productColors.put("Maionese",colors);
+
+        colors = new ArrayList<String>();
+        productColors.put("Mostarda",colors);
+
+        return productColors;
     }
 }

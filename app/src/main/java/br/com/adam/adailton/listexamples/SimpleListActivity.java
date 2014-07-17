@@ -4,6 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.adam.adailton.listexamples.R;
 
 public class SimpleListActivity extends Activity {
@@ -12,6 +20,7 @@ public class SimpleListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_list);
+        setAdapter();
     }
 
 
@@ -32,5 +41,32 @@ public class SimpleListActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void setAdapter() {
+        ArrayList<String> products = (ArrayList<String>) getProducts();
+        ListView productsListView = (ListView) findViewById(R.id.activity_simple_list_main_list);
+        TextView emptyTextView = (TextView) findViewById(R.id.activity_simple_list_textview_empty);
+        if (products.size() != 0) {
+            productsListView.setAdapter(new SimpleListAdapter(this, products));
+            emptyTextView.setVisibility(View.GONE);
+        } else {
+            productsListView.setVisibility(View.GONE);
+        }
+    }
+
+
+    private List<String> getProducts() {
+        ArrayList<String> products = new ArrayList<String>();
+        products.add("Arroz");
+        products.add("Banana");
+        products.add("Feijão");
+        products.add("Carne de porco");
+        products.add("Maça");
+        products.add("Macarrão");
+        products.add("Maionese");
+        products.add("Mostarda");
+        return products;
     }
 }

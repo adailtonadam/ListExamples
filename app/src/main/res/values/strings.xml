@@ -8,5 +8,7 @@
     <string name="title_activity_expandable_list">ExpandableList</string>
     <string name="activity_main_button_simple_view_text">Lista simples</string>
     <string name="activity_main_button_expandable_list_text">Lista expandível</string>
+    <string name="activity_simple_list_textview_empty">Sem dados,</string>
+    <string name="title_activity_item_view">ItemViewActivity</string>
 
 </resources>

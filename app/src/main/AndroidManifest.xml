@@ -24,6 +24,10 @@
             android:name=".ExpandableListActivity"
             android:label="@string/title_activity_expandable_list" >
         </activity>
+        <activity
+            android:name=".ItemViewActivity"
+            android:label="@string/title_activity_item_view" >
+        </activity>
     </application>
 
 </manifest>

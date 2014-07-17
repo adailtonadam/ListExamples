@@ -1,10 +1,12 @@
 package br.com.adam.adailton.listexamples;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -44,47 +46,22 @@ public class SimpleListAdapter extends BaseAdapter{
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         View view = convertView;
-    /*    view = inflater.inflate(R.layout.adapter_usuario, parent, false);
+        view = inflater.inflate(R.layout.adapter_simple_list, parent, false);
 
-        final TextView nome = (TextView) view.findViewById(R.id.adapter_usuario_textview_nome);
-        final TextView fone = (TextView) view.findViewById(R.id.adapter_usuario_textview_fone);
-        final TextView sex = (TextView) view.findViewById(R.id.adapter_usuario_textview_sex);
+        final TextView name = (TextView) view.findViewById(R.id.adapter_simple_list_textview_name);
 
+        name.setText(products.get(position));
 
-        nome.setText(usuarioList.get(position).getNome());
-        fone.setText(usuarioList.get(position).getFone());
-        if(usuarioList.get(position).getSex() == Usuario.MASCULINO){
-            sex.setText(activity.getResources().getString(R.string.activity_user_list_masculino));
-        }  else {
-            sex.setText(activity.getResources().getString(R.string.activity_user_list_feminino));
-        }
-
-        view.findViewById(R.id.adapter_usuario_button_mostrar_usuario ).setOnClickListener(
-                new OnClickListener() {
+        view.findViewById(R.id.adapter_simple_list_textview_name ).setOnClickListener(
+                new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-
-
-                        String url = "tel:" + usuarioList.get(position).getFone();
-                        Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse(url));
-                        activity.startActivity(intent);
-
-
-                    }
-                });
-
-        view.findViewById(R.id.adapter_usuario_layout_contato).setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(activity,UserPlaceActivity.class);
-                        intent.putExtra("userid",usuarioList.get(position).getId());
+                        Intent intent = new Intent(activity.getApplicationContext(),ItemViewActivity.class);
+                        intent.putExtra("MainText",products.get(position));
                         activity.startActivity(intent);
                     }
                 });
-                */
 
         return view;
     }
